@@ -1,0 +1,47 @@
+\begin{thebibliography}{1}
+
+\bibitem{springerlink:10.1007}
+J.~Allan.
+\newblock Introduction to topic detection and tracking.
+\newblock In J.~Allan and W.~B. Croft, editors, {\em Topic Detection and
+  Tracking}, volume~12 of {\em The Information Retrieval Series}, pages 1--16.
+  Springer US, 2002.
+
+\bibitem{Blei:2003:LDA:944919.944937}
+D.~M. Blei, A.~Y. Ng, and M.~I. Jordan.
+\newblock Latent dirichlet allocation.
+\newblock {\em J. Mach. Learn. Res.}, 3:993--1022, Mar. 2003.
+
+\bibitem{Choudhary07aframework}
+R.~Choudhary, S.~Mehta, A.~Bagchi, and R.~Balakrishnan.
+\newblock A framework for exploration of news corpora by actor evolution and
+  interaction, 2007.
+
+\bibitem{Hofmann99probabilisticlatent}
+T.~Hofmann.
+\newblock Probabilistic latent semantic analysis.
+\newblock In {\em In Proc. of Uncertainty in Artificial Intelligence,
+  UAI’99}, pages 289--296, 1999.
+
+\bibitem{Kim:2011:TCU:1964750.1964765}
+D.~Kim and A.~Oh.
+\newblock Topic chains for understanding a news corpus.
+\newblock In {\em Proceedings of the 12th international conference on
+  Computational linguistics and intelligent text processing - Volume Part II},
+  CICLing'11, pages 163--176, Berlin, Heidelberg, 2011. Springer-Verlag.
+
+\bibitem{springerlink:10.1023/B:INRT.0000011210.12953.86}
+J.~Makkonen, H.~Ahonen-Myka, and M.~Salmenkivi.
+\newblock Simple semantics in topic detection and tracking.
+\newblock {\em Information Retrieval}, 7:347--368, 2004.
+\newblock 10.1023/B:INRT.0000011210.12953.86.
+
+\bibitem{Mei:2005:DET:1081870.1081895}
+Q.~Mei and C.~Zhai.
+\newblock Discovering evolutionary theme patterns from text: an exploration of
+  temporal text mining.
+\newblock In {\em Proceedings of the eleventh ACM SIGKDD international
+  conference on Knowledge discovery in data mining}, KDD '05, pages 198--207,
+  New York, NY, USA, 2005. ACM.
+
+\end{thebibliography}

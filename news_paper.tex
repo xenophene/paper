@@ -1,0 +1,178 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% ---------------------------------------------------------------------------------------------------------------
+% It is an example which *does* use the .bib file (from which the .bbl file
+% is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission,
+% you need to 'insert'  your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% Questions regarding SIGS should be sent to
+% Adrienne Griscti ---> griscti@acm.org
+%
+% Questions/suggestions regarding the guidelines, .tex and .cls files, etc. to
+% Gerald Murray ---> murray@hq.acm.org
+%
+% For tracking purposes - this is V3.1SP - APRIL 2009
+
+\documentclass{acm_proc_article-sp}
+
+\begin{document}
+
+\title{Visualizing News as Entity-Topic Interactions}
+% \subtitle{[Extended Abstract]
+% \titlenote{A full version of this paper is available as
+% \textit{Author's Guide to Preparing ACM SIG Proceedings Using
+% \LaTeX$2_\epsilon$\ and BibTeX} at
+% \texttt{www.acm.org/eaddress.htm}}}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor 
+Maya Ramanath, Amitabha Bagchi, Rahul Goyal and Ravee Malla\\
+  \affaddr{Indian Institute of Technology}\\
+  \affaddr{New Delhi, India}\\
+  \email{\{ramanath, bagchi, cs5080222, cs5080224\}@cse.iitd.ernet.in}
+% 2nd author
+%\alignauthor 
+%Sameep Mehta\\
+  %\affaddr{IBM Research India}\\
+ % \affaddr{New Delhi, India}\\
+ % \email{sameepmehta@in.ibm.com}
+}
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+\date{22 April 2012}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+\begin{abstract}
+Exploring news, both real-time and archival, is a complex task. One needs to go through a series of related articles and derive an underlying story by combining these articles meaningfully. Moreover, for understanding a chain of events, one needs to go navigate through a series of articles, each of which provide only part of the complete picture. For a user without prior knowledge of a story, it is unclear as to which articles would be ideal as a starting point. We describe \& evaluate ESTHETE, a news browsing interface to address this problem. It allows users to browse through archive news documents augmented with useful information like the important entities in the article along with the topics that were being talked about at that time. In addition, the tool aggregates articles and presents them as themes which highlights the important stories throughout the period. The interface uses a previously developed graph generation algorithm as a back-end to mine \& score actor relationships modeling them as transformations. The interface is aimed at making this process of news discovery useful for the user. We describe the various components that go into building this interface and all the preprocessing that is done on the articles. We report the results of user evaluations on predetermined news exploratory tasks that were done on the tool, comparing them to other news aggregating services.
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}[performance measures]
+
+\terms{News Corpora Exploration, Interface design, Entity Extraction, News Summarization, Topic Detection}
+
+%\keywords{ACM proceedings, \LaTeX, text tagging} % NOT required for Proceedings
+
+\section{Introduction}
+News browsing is one of the primary uses of the internet. With the growth of the internet and it's users, there has been a virtual explosion of the amount of information that is available in a variety of domains. However, it has become increasingly difficult to streamline and organize the search trajectory to find exactly what one is looking for. Traditionally, search\footnote{using notable search engines like Google} has been with success used to filter out web documents that are relevant to a query. Multiple parameters are considered while considering the relevance of a document to a given query. However, this approach doesn't give satisfactory results for news documents. There are various unique features that make a news document more difficult to rank against a given query. Some of these features are
+\begin{itemize}
+\item A timestamp when the news article was published
+\item A set of real-world events that are talked about in the article
+\item A set of articles that were published in the past that this article references \& builds upon
+\item A set of entities that are described
+\end{itemize}
+
+It is unclear as to which feature must be assigned higher weight. For eg. if a user queries "News on Bill Clinton", is the user is looking for most important events that Bill Clinton featured in (US Elections 1992, 1996, World Politics) or some more recent but less important news that involve him? Also, if the articles lacked an underlying structure, news from US Elections would appear interleaved Bill Clinton's philanthropic endeavours. Instead, a user would want to be able to filter out the topics that he is interested in. A basic requirement is to display news on a timeline which to reflect actual world happenings through the news articles covering them. 
+
+In addition, there are multiple news sources for an event and any news story develops over a period of time. Many times, a single article is not enough to give a reader the complete context of the underlying happenings in the real world. For a single article, there is a need to summarize it to give a sense of the ideas being talked about. For a set of articles, one needs to connect them according to the entities that occur so that a user only browses through the relevant articles. 
+\section{Motivation}
+The primary problem that we are trying to tackle is the following. Given an news information need, what set of articles should be retrieved and how should they be presented, so that the user through an iterative process, can navigate through them, building more context about the real-world event. For this we note that the two primary attributes of any news article are the entities (person, organization, place, etc) that appear in them, and the topics that are talked about in the article. Hence, we have designed an interface which augments news articles with the additional information of the relevant entities and the topics. In addition, these articles are arranged in time, so that users can easily navigate to a particular point in time, and look at how various articles are linked together.
+\section{Data Preprocessing}
+\subsection{News Corpus}
+Our news articles were taken from the New York Times 20-years archive dataset. We have focussed on the year 2000, since it was an election year, and we wanted to study how a complex real-world event like an election can be made simple to interpret with our interface. Articles related to the elections were primarily found in the U.S. section of the daily. We have also studied the articles of the Sports section. In addition to the dataset, we also crawled the NY Times website to get the online web editions of these articles since they contained rich annotations like keywords \& entities.
+
+\subsection{Entity Extraction}
+The collected articles were then queried to OpenCalais\footnote{http://opencalais.com}, a web tool developed by Reuters. The tool accepts documents which are upto 100,000 characters in length as POST requests, and replies back with all the entities that it found in the document. These are grouped under an entity classes like \emph{person}, \emph{organization}, etc. There is a fixed set of entity classes that OpenCalais can recoganize. Along with each entity tagged, OpenCalais also assigns a score to reflect the importance of the entity in the article. We use this score to threshold and take five most important entities. The response from OpenCalais for all these articles were stored as entities for the file.
+
+\subsection{Topic Detection}
+Along with the entities for an article, we also need the list of topics that were talked about in the article. Topic Detection \& Tracking (TDT) is a well studied problem\cite{springerlink:10.1023/B:INRT.0000011210.12953.86, springerlink:10.1007}, and a lot of past work has focussed on news event detection over time\cite{Mei:2005:DET:1081870.1081895, Kim:2011:TCU:1964750.1964765}. In the past, standard document labelling techniques of PLSA\cite{Hofmann99probabilisticlatent} and LDA\cite{Blei:2003:LDA:944919.944937} have been applied with success, and we resorted to do the same. Hence, we divided our news corpus into slabs of 20 days, and ran LDA over these articles. As a result, we get a mixture of topics and for every article, a probability of associating that article to a topic. We assigned each article the topic label that it associated the most with. Using, we associate a chain of topics to articles appearing successively in time.
+
+\subsection{News Summarization}
+Looking at entities and topics related to an article gives a good idea of what the article may be about. However, to be able to draw out more context, a user would like to look at the article itself or atleast a good summary. For this, we incorporated tested out various document summarizing tools. We finally decided to Text Compactor \footnote{http://textcompactor.com/} which is based on Open Text Summarizer\footnote{http:/libots.sourceforge.net/}. We sent all our documents as POST requests to this tool and specified the degree of summarization desired.
+
+\subsection{Transformations among Entities}
+Our work implements and builds upon the work by Choudhary et al.\cite{Choudhary07aframework} which formalizes the notion of presenting news articles as a directed graph. Given a set of articles, one can construct a graph in the following way
+\begin{itemize}
+\item Assign a node for every article labelled by the various entities\footnote{The paper uses the term \emph{actor} for an entity} tagged in the article
+\item Model interactions between articles in time as transformations of the entities appearing in them. These transformations can be \emph{Create}, \emph{Continue}, \emph{Cease}, \emph{Merge}, \emph{Split}
+\item Score transformations using metrics defined
+\item Use the transformations to draw edges between nodes if important transformations occur amongst entities common to corresponding articles. For eg. a CONTINUE(A) transformation for an entity A between 2 nodes causes the 2 nodes to be joined by an edge
+\end{itemize}
+Using the above idea, we can mine important relations among actors over time in the form of transformations happening among them. Moreover, the strength of the transformation gives a sense of the strength of the interaction. The score is presented on the interface by a varying color code. 
+
+--MORE ABOUT TRANSFORMATIONS CAN BE SAID HERE--
+\section{System Description}
+Our interface is built on HTML using Javascript and PHP on the server-side. All data preprocessing steps were carried offline and a database was built to store the results. We query the database to obtain the relevant information. 
+--A SYSTEM DIAGRAM--
+\section{User Evaluation}
+We have designed a set of common news retrieval tasks which we show can be done with greater ease using our interface. A set of users, both domain experts and novices were asked to solve these tasks using our tool and we report on the results.
+%ACKNOWLEDGMENTS are optional
+\section{Acknowledgments}
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{news}  % news.bib is the name of the Bibliography in this case
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+% ACM needs 'a single self-contained file'!
+%
+%APPENDICES are optional
+%\balancecolumns
+\balancecolumns
+% That's all folks!
+\end{document}
